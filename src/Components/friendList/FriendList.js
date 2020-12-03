@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./FriendList.module.css";
 
 const FriendList = ({ friends }) => {
-  console.log(friends);
   return (
     <ul className={styles.friendList}>
       {friends.map((item) => {
