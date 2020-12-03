@@ -1,21 +1,24 @@
 import React from "react";
-import styles from "./Statistics.module.css";
+import s from "./Statistics.module.css";
 import rundomColor from "../../randomColor";
 
 const Statistics = ({ title, stats }) => {
+  if (stats.length === 0) {
+    return null;
+  }
   return (
-    <section className={styles.statistics}>
-      {title && <h2 className={styles.title}>{title}</h2>}
-      <ul className={styles.statList}>
-        {stats.map((item) => {
+    <section className={s.statistics}>
+      {title && <h2 className={s.title}>{title}</h2>}
+      <ul className={s.statList}>
+        {stats.map(({ id, label, percentage }) => {
           return (
             <li
-              key={item.id}
-              className={styles.item}
+              key={id}
+              className={s.item}
               style={{ background: rundomColor() }}
             >
-              <span className={styles.label}>{item.label}</span>
-              <span className={styles.percentage}>{item.percentage}%</span>
+              <span className={s.label}>{label}</span>
+              <span className={s.percentage}>{percentage}%</span>
             </li>
           );
         })}

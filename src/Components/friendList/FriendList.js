@@ -1,26 +1,23 @@
 import React from "react";
-import styles from "./FriendList.module.css";
+import s from "./FriendList.module.css";
+import classnames from "classnames";
 
 const FriendList = ({ friends }) => {
+  if (friends.length === 0) {
+    return null;
+  }
   return (
-    <ul className={styles.friendList}>
-      {friends.map((item) => {
+    <ul className={s.friendList}>
+      {friends.map(({ id, avatar, name, isOnline }) => {
+        const statusName = classnames(
+          s.status,
+          isOnline ? s.online : s.offline
+        );
         return (
-          <li key={item.id} className={styles.item}>
-            {item.isOnline ? (
-              <span
-                className={`${styles.status}  ${styles.statusIsActiv}`}
-              ></span>
-            ) : (
-              <span className={styles.status}></span>
-            )}
-            <img
-              className={styles.avatar}
-              src={item.avatar}
-              alt=""
-              width="48"
-            />
-            <p className={styles.name}>{item.name}</p>
+          <li key={id} className={s.item}>
+            <span className={statusName}> </span>
+            <img className={s.avatar} src={avatar} alt="" width="48" />
+            <p className={s.name}>{name}</p>
           </li>
         );
       })}

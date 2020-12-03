@@ -11,8 +11,12 @@
   background: red;
   border-radius: 50%;
 }
-.statusIsActiv {
+.online {
   background: green;
+}
+
+.offline {
+  background: red;
 }
 
 .item {

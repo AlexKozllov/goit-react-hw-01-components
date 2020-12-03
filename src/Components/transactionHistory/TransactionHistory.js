@@ -1,9 +1,12 @@
 import React from "react";
-import style from "./TransactionHistory.module.css";
+import s from "./TransactionHistory.module.css";
 
 const TransactionHistory = ({ items }) => {
+  if (items.length === 0) {
+    return null;
+  }
   return (
-    <table className={style.transactionHistory}>
+    <table className={s.transactionHistory}>
       <thead>
         <tr>
           <th>Type</th>
@@ -12,13 +15,13 @@ const TransactionHistory = ({ items }) => {
         </tr>
       </thead>
       <tbody>
-        {items.map((item, index) => {
-          let tdSyle = index % 2 ? style.tdGray : style.tdWhite;
+        {items.map(({ id, type, amount, currency }, index) => {
+          let tdSyle = index % 2 ? s.tdGray : s.tdWhite;
           return (
-            <tr key={item.id} className={tdSyle}>
-              <td>{item.type}</td>
-              <td>{item.amount}</td>
-              <td>{item.currency}</td>
+            <tr key={id} className={tdSyle}>
+              <td>{type}</td>
+              <td>{amount}</td>
+              <td>{currency}</td>
             </tr>
           );
         })}
